@@ -122,8 +122,6 @@ defaults write /System/Library/User\ Template/English.lproj/Library/Preferences/
 
 # Detects if this Mac is a laptop or not by checking the model ID for the word "Book" in the name.
 
-IS_LAPTOP=`/usr/sbin/system_profiler SPHardwareDataType | grep "Model Identifier" | grep "Book"`
-
 if [[ $shortModel == "MacBook" ]]; then
 	pmset -b sleep 15 disksleep 10 displaysleep 5 halfdim 1
 	pmset -c sleep 0 disksleep 0 displaysleep 30 halfdim 1
