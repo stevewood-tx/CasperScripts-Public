@@ -347,27 +347,6 @@ else
     echo 'No cleanup required!' 
 fi
 
-##########################################
-# Fixing Admin home folder
-##########################################
-##########################################
-/bin/echo "Fixing admin folder"
-/bin/date
-
-
-if [[ ! -d "/var/<adminuser>" ]]; then
-	
-	rm -rf /var/<adminuser>/*
-	cp -R /System/Library/User\ Template/English.lproj/* /var/admin/
-	chown -R admin:staff /var/admin
-
-else
-	
-	rm -rf /var/<adminuser>/*
-	cp -R /System/Library/User\ Template/English.lproj/* /var/integeradmin/
-	chown -R integeradmin:staff /var/integeradmin
-	
-fi
 
 ##########################################
 #  Delete iLife folders
