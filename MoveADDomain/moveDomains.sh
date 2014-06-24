@@ -11,16 +11,18 @@
 # Prequisites:  You'll need a policy in your JSS 
 
 # Globals & Logging	
-LOGPATH='/private/var/inte/logs'
-mkdir $LOGPATH
-set -xv; exec 1> $LOGPATH/movedomainslog.txt 2>&1
+LOGPATH='<WHERE YOU STORE LOGS>'  # change this line to point to your local logging directory
+if [[ ! -d "$LOGPATH" ]]; then
+	mkdir $LOGPATH
+fi
+set -xv; exec 1> $LOGPATH/movedomainslog.txt 2>&1  # you can name the log file what you want
 version=1.1
-oldAD='integerdallas.local'
+oldAD='<OLD AD DOMAIN>'
 currentAD=`dsconfigad -show | grep -i "active directory domain" | awk '{ print $5 }'`
 
 # let the user know what we are doing
 
-banner=`/Library/Application\ Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper -windowType hud -title "Moving Domains" -heading "Moving Domains Header" -description "We are moving your user account to the new authentication domain.  When we are completed, and your computer restarts, you will be able to login to your computer with the same password you use for Timebomb.  In fact, once this is completed you will use the same password for logging into your machine, logging onto the server, Timebomb, VPN, and Google." -icon /private/var/inte/icons/PleaseWait.icns -button1 "Proceed" -button2 "Not Now" -defaultButton 1 -cancelButton 2 -timeout 60 -countdown` 
+banner=`/Library/Application\ Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper -windowType hud -title "Moving Domains" -heading "Moving Domains Header" -description "We are moving your user account to the new authentication domain.  When we are completed, and your computer restarts, you will be able to login to your computer with the same password you use for Timebomb.  In fact, once this is completed you will use the same password for logging into your machine, logging onto the server, Timebomb, VPN, and Google." -icon <PATH-TO-YOUR-ICON> -button1 "Proceed" -button2 "Not Now" -defaultButton 1 -cancelButton 2 -timeout 60 -countdown` 
 
 if [[ $banner == "2" ]]; then
 	
@@ -32,10 +34,12 @@ fi
 # Grab current user name
 loggedInUser=`/bin/ls -l /dev/console | /usr/bin/awk '{ print $3 }'`
 
+##### if you do not have OD deployed you can remove the follwing lines
 # unbind from LDAP
 # sinc there is no easy way to determine if bound to OD, we will just run against our OD for good measure
 
-dsconfigldap -r master.integerdallas.com
+dsconfigldap -r <YOUR OD DOMAIN>
+#####
 
 # unbind from AD
 # check to see if we are bound to our current AD or not.  If not we can skip this
@@ -43,17 +47,19 @@ dsconfigldap -r master.integerdallas.com
 if [[ "$currentAD" = "$oldAD" ]]; then
 	
 	# remove the config for our old AD
-	dsconfigad -remove integerdallas.local -user unbinder -pass Integer34 
+	# you need a user in your AD that has the rights to remove computers from the domain
+
+	dsconfigad -remove $oldAD -user <networkuser> -pass <networkuserpass>   
 
 fi
 
 # remove the local user from the machine so we get the proper UID assigned in dscl
 dscl . delete /Users/$loggedInUser
 
-# bind to belmar
+# bind to new AD
 # using a JAMF policy to bind to the new AD
 
-jamf policy -id 304
+jamf policy -id <policynumber> # can also use a custom trigger for the policy
 
 # reset permissions
 ### some of the code below is courtesy of Ben Toms (@macmule)
