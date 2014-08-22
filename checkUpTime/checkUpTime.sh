@@ -18,8 +18,8 @@ version=1.0
 CD="/path/to/cocoaDialog.app/Contents/MacOS/cocoaDialog" ### <--- path to where you store cocoDialog on local machine
 NC='/Library/Application Support/JAMF/bin/Management Action.app/Contents/MacOS/Management Action'
 jssURL='https://YOUR.JSSSERVER.COM:8443' ### <--- enter your JSS URL
-apiUser="<APIREADUSER>"   ### <--- enter your API user
-apiPass="<APIREADUSERPASS>"  ### <--- enter your API user password
+apiUser=$4   ### <--- enter as $4 variable in your script settings
+apiPass=$5  ### <--- enter as $5 variable in your script settings
 serNum=$(ioreg -l | grep IOPlatformSerialNumber | awk '{print $4}'| sed 's/"//g')
 cdTitle="Machine Needs A Restart"
 loggedInUser=`/bin/ls -l /dev/console | /usr/bin/awk '{ print $3 }'`
@@ -63,7 +63,7 @@ if [ $loggedInUser != "root" ]; then
 			
 				bubble=`$CD bubble --title "$cdTitle" --no-timeout --text "$cdText" --icon-file $cdIcon`
 				
-				if [ $email != "" ]; then
+				if [ $email ]; then
 				
 					echo "$message1\n\n$message1b\n$message2\n$message3\n\n$message3a\n$message4\n\n\n$message5" | mail -s "URGENT: Restart Your Machine" $email
 				
