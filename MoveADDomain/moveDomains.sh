@@ -128,7 +128,9 @@ chown -R $accountUniqueID:$domainUsersPrimaryGroupID /Users/$loggedInUser
 
 
 ### Check to see if FileVault is enabled.  If it is we will need to grab some info from the user
-#ENCRYPTIONEXTENTS=`diskutil cs list | grep -E "$EGREP_STRING\Has Encrypted Extents" | sed -e's/\|//' | awk '{print $4}'`
+#### this section will get stored in the log file if left on and will store the end user's password and
+#### the admin user's password in clear text.  If not testing, disable logging by commenting out lines
+#### under the Globals & Logging section above.
 
 if [[ "$ENCRYPTIONEXTENTS" = "Yes" ]]; then
 	
