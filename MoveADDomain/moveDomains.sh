@@ -30,7 +30,7 @@ newAD='<NEW AD DOMAIN>'  # set this to the new AD domain name
 currentAD=`dsconfigad -show | grep -i "active directory domain" | awk '{ print $5 }'`
 CD="/private/var/inte/bin/cocoaDialog.app/Contents/MacOS/cocoaDialog"  ####  set this to the location of cocoaDialog on your systems
 osVersion=`sw_vers -productVersion | cut -d. -f1,2`
-adminEmail='dallasit@integer.com'
+adminEmail='YOUREMAIL@YOURDOMAIN.COM'  ## enter an email address to receive notification of failure at
 
 ## Grab the user's home folder location
 userHome=`dscl . read /Users/swood NFSHomeDirectory | awk '{ print $2 }'`
