@@ -32,9 +32,6 @@ CD="/private/var/inte/bin/cocoaDialog.app/Contents/MacOS/cocoaDialog"  ####  set
 osVersion=`sw_vers -productVersion | cut -d. -f1,2`
 adminEmail='YOUREMAIL@YOURDOMAIN.COM'  ## enter an email address to receive notification of failure at
 
-## Grab the user's home folder location
-userHome=`dscl . read /Users/swood NFSHomeDirectory | awk '{ print $2 }'`
-
 ## Because of FileVault, if a system is encrypted it has to be a 10.8 or above machine
 
 ENCRYPTIONEXTENTS=`diskutil cs list | grep -E "$EGREP_STRING\Has Encrypted Extents" | sed -e's/\|//' | awk '{print $4}'`
@@ -64,6 +61,9 @@ fi
 
 # Grab current user name
 loggedInUser=`/bin/ls -l /dev/console | /usr/bin/awk '{ print $3 }'`
+
+## Grab the user's home folder location
+userHome=`dscl . read /Users/$loggedInUser NFSHomeDirectory | awk '{ print $2 }'`
 
 ##### if you do not have OD deployed you can remove the follwing lines
 # unbind from LDAP
