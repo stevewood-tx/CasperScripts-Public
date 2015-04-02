@@ -54,7 +54,6 @@ do
 	echo $serialNumber " " $myID " " $leaseExpires
 	apiData="<computer><purchasing><lease_expires>$leaseExpires</lease_expires></purchasing></computer>"
 	output=`curl -sS -k -i -u ${jssAPIUsername}:${jssAPIPassword} -X PUT -H "Content-Type: text/xml" -d "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>$apiData" ${jssAddress}/JSSResource/computers/id/$myID`
-	#output=`curl -sS -k -i -u apiuser:apiuser -X PUT -d "$apiData" $jssAddress/JSSResource/computers/id/$myID`
 
 	echo $output
 	#Error Checking
