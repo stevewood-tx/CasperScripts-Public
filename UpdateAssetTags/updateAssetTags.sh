@@ -8,7 +8,7 @@
 # by simply changing the <mobile_device> and </mobile_device> tags to <computer> and </computer>
 #
 # The CSV file needs to be saved as a UNIX file with LF, not CR
-# Version: 1.0
+# Version: 1.1 - changed to taking name of CSV on command line: /path/to/updateAssetTags.sh /path/to/CSV.file
 #
 # A good portion of this script is re-purposed from the script posted in the following JAMF Nation article:
 #
@@ -18,7 +18,7 @@
 jssAPIUsername="<apiuser>"
 jssAPIPassword="<apipassword>"
 jssAddress="https://your.jss.com:8443"
-file="<path-to-csv-file>"
+file="$1"
 
 #Verify we can read the file
 data=`cat $file`
