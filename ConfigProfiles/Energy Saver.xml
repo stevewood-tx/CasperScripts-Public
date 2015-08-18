@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1">
+	<dict>
+		<key>PayloadUUID</key>
+		<string>C567D64C-9AE6-4EF2-88E7-162D998011A0</string>
+		<key>PayloadType</key>
+		<string>Configuration</string>
+		<key>PayloadOrganization</key>
+		<string>YourOrganization</string>
+		<key>PayloadIdentifier</key>
+		<string>C567D64C-9AE6-4EF2-88E7-162D998011A0</string>
+		<key>PayloadDisplayName</key>
+		<string>Energy Saver</string>
+		<key>PayloadDescription</key>
+		<string/>
+		<key>PayloadVersion</key>
+		<integer>1</integer>
+		<key>PayloadEnabled</key>
+		<true/>
+		<key>PayloadRemovalDisallowed</key>
+		<true/>
+		<key>PayloadScope</key>
+		<string>System</string>
+		<key>PayloadContent</key>
+		<array>
+			<dict>
+				<key>PayloadUUID</key>
+				<string>6258E3E7-BCD7-4DF8-A107-A42B78125326</string>
+				<key>PayloadType</key>
+				<string>com.apple.MCX</string>
+				<key>PayloadOrganization</key>
+				<string>YourOrganization</string>
+				<key>PayloadIdentifier</key>
+				<string>6258E3E7-BCD7-4DF8-A107-A42B78125326</string>
+				<key>PayloadDisplayName</key>
+				<string>MCX</string>
+				<key>PayloadDescription</key>
+				<string/>
+				<key>PayloadVersion</key>
+				<integer>1</integer>
+				<key>PayloadEnabled</key>
+				<true/>
+				<key>com.apple.EnergySaver.desktop.ACPower-ProfileNumber</key>
+				<integer>-1</integer>
+				<key>com.apple.EnergySaver.portable.ACPower-ProfileNumber</key>
+				<integer>-1</integer>
+				<key>com.apple.EnergySaver.portable.BatteryPower-ProfileNumber</key>
+				<integer>-1</integer>
+				<key>com.apple.EnergySaver.desktop.ACPower</key>
+				<dict>
+					<key>Wake On LAN</key>
+					<integer>1</integer>
+					<key>System Sleep Timer</key>
+					<integer>0</integer>
+					<key>Sleep On Power Button</key>
+					<integer>1</integer>
+					<key>Display Sleep Timer</key>
+					<integer>0</integer>
+					<key>Disk Sleep Timer-boolean</key>
+					<true/>
+					<key>Automatic Restart On Power Loss</key>
+					<integer>1</integer>
+				</dict>
+				<key>com.apple.EnergySaver.portable.ACPower</key>
+				<dict>
+					<key>Wake On LAN</key>
+					<integer>1</integer>
+					<key>System Sleep Timer</key>
+					<integer>0</integer>
+					<key>Dynamic Power Step</key>
+					<integer>1</integer>
+					<key>Sleep On Power Button</key>
+					<integer>1</integer>
+					<key>Display Sleep Timer</key>
+					<integer>120</integer>
+					<key>Disk Sleep Timer-boolean</key>
+					<true/>
+					<key>Automatic Restart On Power Loss</key>
+					<integer>1</integer>
+					<key>Reduce Processor Speed</key>
+					<integer>0</integer>
+				</dict>
+				<key>com.apple.EnergySaver.portable.BatteryPower</key>
+				<dict>
+					<key>Wake On LAN</key>
+					<integer>1</integer>
+					<key>System Sleep Timer</key>
+					<integer>10</integer>
+					<key>Dynamic Power Step</key>
+					<integer>1</integer>
+					<key>Sleep On Power Button</key>
+					<integer>1</integer>
+					<key>Display Sleep Timer</key>
+					<integer>5</integer>
+					<key>Disk Sleep Timer-boolean</key>
+					<true/>
+					<key>Automatic Restart On Power Loss</key>
+					<integer>1</integer>
+					<key>Reduce Processor Speed</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+		</array>
+	</dict>
+</plist>

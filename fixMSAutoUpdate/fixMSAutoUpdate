@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Name: fixMSAutoUpdate.sh
+# Date: 31 July 2015
+# Author: Steve Wood (swood@integer.com)
+# Purpose: to check to see if MS Update app is set to Manual check
+
+currentUser=$(ls -l /dev/console | awk '{print $3}')
+
+currentState=$(defaults read /Users/$currentUser/Library/Preferences/com.microsoft.autoupdate2.plist HowToCheck)
+
+if [[ $currentState != "Manual" ]];then
+	
+	defaults write /Users/$currentUser/Library/Preferences/com.microsoft.autoupdate2.plist HowToCheck Manual
+	
+fi
+
