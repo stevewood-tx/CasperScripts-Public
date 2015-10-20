@@ -1,4 +1,4 @@
-#!/bin/sh
+
 
 # Name: leaseupdate.sh
 # Date: 9 March 2015
