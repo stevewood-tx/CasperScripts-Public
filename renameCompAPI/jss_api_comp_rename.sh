@@ -5,8 +5,19 @@
 # Author: Steve Wood (swood@integer.com)
 # Purpose: utilize the JSS API to grab the building name of a machine
 # and re-name the machine based on the building name.
+#
+##########################################################################
 
-### Variables
+############################ Variables ###################################
+#
+# When adding to the JSS, set the Parameters under the Options tab for the
+# following:
+#
+# Parameter 4 ($4): the user name for API calls
+# Parameter 5 ($5): the password for the API user
+# Parameter 6 ($6): the full URL to your JSS
+#
+##########################################################################
 apiuser="$4"
 apipass="$5"
 jssAddress="$6" # use format https://jss.name.com:8443
