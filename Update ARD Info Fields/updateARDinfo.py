@@ -5,6 +5,9 @@
 # Purpose: used to pull location data out of the JSS and use it to update
 # the ARD fields on a computer.
 
+# This will pull Real Name, User name, and Building from JSS via API. Change the
+# variables to pull different information and push to the ARD Fields.
+
 import urllib
 import subprocess
 import os.path
