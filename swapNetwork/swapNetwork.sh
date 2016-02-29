@@ -6,6 +6,16 @@
 # Original JAMF Nation post:  https://jamfnation.jamfsoftware.com/discussion.html?id=1441#respond
 # Credit to Jonathan Synowiec for this
 # Use in conjunction with a LaunchDaemon
+# Version: 2.0
+# Updated 29 Feb 2016 - updated to check for jamf binary location due to OS X 10.11 changes
+
+if [[ "$jamf_binary" == "" ]] && [[ -e "/usr/sbin/jamf" ]] && [[ ! -e "/usr/local/bin/jamf" ]]; then
+   jamf_binary="/usr/sbin/jamf"
+elif [[ "$jamf_binary" == "" ]] && [[ ! -e "/usr/sbin/jamf" ]] && [[ -e "/usr/local/bin/jamf" ]]; then
+   jamf_binary="/usr/local/bin/jamf"
+elif [[ "$jamf_binary" == "" ]] && [[ -e "/usr/sbin/jamf" ]] && [[ -e "/usr/local/bin/jamf" ]]; then
+   jamf_binary="/usr/local/bin/jamf"
+fi
 
 ##
 # Define wireless interface "en" label.
@@ -38,10 +48,10 @@ if [[ "${ethernetIP}" = "" && "${wifiStatus}" = "inactive" ]] || [[ "${ethernetI
 fi
 
 ## update the JSS
-checkjss=`/usr/sbin/jamf checkJSSConnection -retry 0 | grep "The JSS is available"`
+checkjss=`${$jamf_binary} checkJSSConnection -retry 0 | grep "The JSS is available"`
 
 if [ "$checkjss" == "The JSS is available." ]; then
-	/usr/sbin/jamf log
+	${$jamf_binary} log
 fi
 
 ##

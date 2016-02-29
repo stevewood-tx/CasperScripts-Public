@@ -47,7 +47,7 @@ Several serials to stdout:      getwarranty SERIAL1 SERIAL2 SERIAL3
 """
 
 import sys, subprocess, datetime, os.path, dateutil.parser
-import re, types, time, getopt, csv, codecs, cStringIO, plistlib
+import re, types, time, getopt, csv, codecs, cStringIO
 import xml.etree.ElementTree as ET 
 # import pickle   --- no longer doing pickles, switch to json
 try:
