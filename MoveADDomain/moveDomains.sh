@@ -2,7 +2,7 @@
 
 # Name:  moveDomains.sh
 # Date:  28 May 2014 v1.0
-# Updated: 18 Jun 2014 v1.1
+# Updated: 14 Apr 2016 v1.3
 # Author:  Steve Wood (swood@integer.com)
 # Purpose:  used to move users from one AD domain to a new one, or from OD to AD
 # Updates:  v1.1 - set GroupID to static
@@ -10,10 +10,13 @@
 #			- adding code to check for domain membership
 #			- adding logic for FileVault encrypted drives
 #	- v1.2 - use of createmobileaccount to get around FileVault
+#       - v1.3 - changed to using parameters from JSS.
 #
 # Prerequisites - when adding this to the JSS, make sure to configure Parameter 4 for the local admin user
-# 					and Parameter 5 as the local admin user password to add the user to FileVault.  Need
-#					cocoaDialog installed on the local system.
+# 					and Parameter 5 as the local admin user password to add the user to FileVault.  Parameter
+#                                        6 is set to a network user for the dsconfigad removal, Parameter 7 is the password for that user.
+#                                       Parameter 8 is the policy # for your AD Bind policy in JSS.
+#                                        Need cocoaDialog installed on the local system.
 #
 # NOTE: you may want to turn off logging (comment out 5 lines under #Globals & Loging) so that no passwords
 # are captured.
@@ -24,7 +27,7 @@ if [[ ! -d "$LOGPATH" ]]; then
 	mkdir $LOGPATH
 fi
 set -xv; exec 1> $LOGPATH/movedomainslog.txt 2>&1  # you can name the log file what you want
-version=1.2
+version=1.3
 oldAD='<OLD AD DOMAIN>'  # set this to your old AD domain name
 newAD='<NEW AD DOMAIN>'  # set this to the new AD domain name
 currentAD=`dsconfigad -show | grep -i "active directory domain" | awk '{ print $5 }'`
@@ -81,7 +84,7 @@ if [[ "$currentAD" = "$oldAD" ]]; then
 	# you need a user in your AD that has the rights to remove computers from the domain
 	# you can also set this to a parameter in the JSS and pass as a variable
 
-	dsconfigad -remove $oldAD -user <networkuser> -pass <networkuserpass>   
+	dsconfigad -remove $oldAD -user '$6' -pass '$7'   
 
 fi
 
@@ -91,7 +94,7 @@ dscl . delete /Users/$loggedInUser
 # bind to new AD
 # using a JAMF policy to bind to the new AD
 
-jamf policy -id <policynumber> # can also use a custom trigger for the policy
+jamf policy -id $8 # can also use a custom trigger for the policy
 
 ### verify that the move was successful
 checkAD=`dsconfigad -show | grep -i "active directory domain" | awk '{ print $5 }'`
