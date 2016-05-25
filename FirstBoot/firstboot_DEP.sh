@@ -2,10 +2,9 @@
 
 ###############################################################################
 #
-# Name: postimage_10.11.sh
+# Name: firstboot_DEP.sh
 # Version: 1.0
-# Date:  09 March 2016
-# Revisied: 11 April 2016 - revised for use with DEP via JSS
+# Date:  25 May 2016
 # 
 # Author:  Steve Wood (swood@integer.com)
 # Purpose:  first boot script to run as part of imaging process to configure
