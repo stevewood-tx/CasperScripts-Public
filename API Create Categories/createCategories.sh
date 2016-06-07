@@ -59,7 +59,7 @@ do
 
 done
 
-echo "The following computers could not be created:"
+echo "The following categories could not be created:"
 printf -- '%s\n' "${duplicates[@]}"
 
 exit 0
