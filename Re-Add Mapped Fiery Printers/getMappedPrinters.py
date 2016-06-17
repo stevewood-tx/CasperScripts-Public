@@ -26,7 +26,6 @@ jssURL = 'https://' + jssAPIuser + ':' + jssAPIpass + \
     '@your.jss.com:8443'
 
 name = list()
-count = 0
 
 # determine the path to the JAMF binary
 def jamf_check():
