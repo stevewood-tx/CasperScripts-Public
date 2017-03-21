@@ -17,7 +17,7 @@
 LOGPATH='/path/to/your/logs'
 JSSURL='https://<yourjssurl>'
 JSSCONTACTTIMEOUT=120
-LOGFILE=/private/var/inte/logs/deployment-$(date +%Y%m%d-%H%M).logging
+LOGFILE=/path/to/your/logs/deployment-$(date +%Y%m%d-%H%M).logging
 VERSION=10.11.4
 
 ## Setup logging
