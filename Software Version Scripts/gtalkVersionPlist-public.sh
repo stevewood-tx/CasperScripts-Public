@@ -7,7 +7,7 @@
 
 plistPath='/path/to/plist/com.contoso.swversions.plist'
 
-if [[ -d "/Library/Internet\ Plug-Ins/googletalkbrowserplugin.plugin" ]]; then
+if [[ -d "/Library/Internet Plug-Ins/googletalkbrowserplugin.plugin" ]]; then
 
 	gtalkVersion=`defaults read /Library/Internet\ Plug-Ins/googletalkbrowserplugin.plugin/Contents/Info CFBundleShortVersionString`
 	defaults write ${plistPath} GTalkVersion -string ${gtalkVersion}
