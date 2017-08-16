@@ -12,7 +12,7 @@
 plistPath='/path/to/plist/com.contoso.swversions.plist'
 # check if Java is installed
 
-if [[ -d "/Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin" ]]; then
+if [[ -d "/Library/Internet Plug-Ins/JavaAppletPlugin.plugin" ]]; then
 
 	OracleUpdateXML="https://javadl-esd-secure.oracle.com/update/mac/au-1.8.0_20.xml"
 
